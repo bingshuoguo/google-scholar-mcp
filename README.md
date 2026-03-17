@@ -1,5 +1,7 @@
 # Google Scholar MCP
 
+[中文说明](README.zh-CN.md)
+
 `google-scholar-mcp` is a local `stdio` MCP server written in Go. It retrieves Google Scholar search results directly from Scholar HTML and exposes them as structured tools for MCP clients such as Cursor, Codex, Claude, and Gemini CLI.
 
 This repository is designed for low-volume local usage. It does not depend on a paid SERP API, but it also does not try to hide the fact that Google Scholar scraping is brittle and best-effort.
