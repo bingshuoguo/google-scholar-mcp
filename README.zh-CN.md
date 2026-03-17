@@ -147,7 +147,6 @@ LOG_LEVEL=debug SCHOLAR_MAX_RESULTS=5 ./.bin/google-scholar-mcp
 
 ## 文档
 
-- [Go 重写设计说明](docs/design.md)
 - [Cursor 接入说明](docs/clients/cursor.md)
 - [Codex 接入说明](docs/clients/codex.md)
 - [Claude 接入说明](docs/clients/claude.md)

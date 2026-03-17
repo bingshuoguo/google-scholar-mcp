@@ -149,7 +149,6 @@ LOG_LEVEL=debug SCHOLAR_MAX_RESULTS=5 ./.bin/google-scholar-mcp
 
 ## Docs
 
-- [Go rewrite design notes](docs/design.md)
 - [Cursor integration](docs/clients/cursor.md)
 - [Codex integration](docs/clients/codex.md)
 - [Claude integration](docs/clients/claude.md)
