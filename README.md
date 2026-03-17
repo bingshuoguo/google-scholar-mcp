@@ -10,10 +10,13 @@ This repository is designed for low-volume local usage. It does not depend on a 
 
 - Go implementation built on the official MCP Go SDK
 - Local `stdio` transport for desktop and CLI MCP clients
+- MCP `tools`, `resources`, and `prompts`
+- CLI commands for `stdio`, `version`, and `help`
 - Structured Google Scholar search results
 - Best-effort Google Scholar author profile lookup
 - Fixture-based parser tests
 - Local smoke test and MCP Inspector validation script
+- GitHub Actions CI and container packaging
 
 ## Available Tools
 
@@ -22,6 +25,23 @@ This repository is designed for low-volume local usage. It does not depend on a 
 | `search_google_scholar_key_words` | Search Google Scholar by keyword query and return structured paper metadata. |
 | `search_google_scholar_advanced` | Search Google Scholar with author and year filters. |
 | `get_author_info` | Find a Google Scholar author profile by name and return structured author metadata. |
+
+## Available Resources
+
+| Resource | URI | Purpose |
+| --- | --- | --- |
+| `server_overview` | `scholar://server/overview` | High-level summary of the server and enabled capabilities. |
+| `tool_catalog` | `scholar://server/tools` | Tool names, arguments, and return shapes. |
+| `runtime_config` | `scholar://server/config` | Runtime config values relevant to Scholar scraping. |
+| `limitations` | `scholar://server/limitations` | Operational caveats and boundaries. |
+| `search_guide` | `scholar://search-guide/{topic}` | Topic-specific search guidance. |
+
+## Available Prompts
+
+| Prompt | Purpose |
+| --- | --- |
+| `scholar_literature_scan` | Guide a model through a keyword-oriented literature scan. |
+| `scholar_author_brief` | Guide a model through an author-centric research brief. |
 
 ## What Data You Can Get
 
@@ -56,6 +76,7 @@ Install the binary from GitHub:
 ```bash
 go install github.com/bingshuoguo/google-scholar-mcp/cmd/google-scholar-mcp@latest
 google-scholar-mcp --version
+google-scholar-mcp help
 ```
 
 Or build from source:
@@ -78,12 +99,32 @@ For local development:
 go run ./cmd/google-scholar-mcp
 ```
 
+Explicit `stdio` mode is also supported:
+
+```bash
+google-scholar-mcp stdio
+```
+
 ## Client Integration
 
 - [Cursor](docs/clients/cursor.md)
 - [Codex](docs/clients/codex.md)
 - [Claude](docs/clients/claude.md)
 - [Gemini CLI](docs/clients/gemini.md)
+
+## Optional Docker Build
+
+Build a local image:
+
+```bash
+docker build -t google-scholar-mcp .
+```
+
+Run the server over stdio inside the container:
+
+```bash
+docker run --rm -i google-scholar-mcp
+```
 
 ## Local Validation
 
@@ -135,12 +176,14 @@ LOG_LEVEL=debug SCHOLAR_MAX_RESULTS=5 ./.bin/google-scholar-mcp
 
 - `cmd/google-scholar-mcp`: executable entrypoint
 - `internal/config`: configuration and logger setup
-- `internal/mcpserver`: MCP server wiring and tool registration
+- `internal/mcpserver`: MCP server wiring, tool registration, resources, and prompts
 - `internal/model`: shared domain models
 - `internal/scholar`: Google Scholar provider, HTTP client, parsers, and tests
 - `testdata`: HTML fixtures for parser tests
 - `scripts/verify_stdio.sh`: build, smoke test, and Inspector launcher
 - `scripts/smoke_stdio`: Go-based local smoke test helper
+- `.github/workflows/ci.yml`: CI for tests and stdio smoke validation
+- `Dockerfile`: container packaging for stdio execution
 
 ### Notes
 
@@ -154,6 +197,10 @@ LOG_LEVEL=debug SCHOLAR_MAX_RESULTS=5 ./.bin/google-scholar-mcp
 - [Codex integration](docs/clients/codex.md)
 - [Claude integration](docs/clients/claude.md)
 - [Gemini CLI integration](docs/clients/gemini.md)
+- [Architecture](docs/architecture.md)
+- [Tools](docs/tools.md)
+- [Resources](docs/resources.md)
+- [Prompts](docs/prompts.md)
 
 ## Limitations
 

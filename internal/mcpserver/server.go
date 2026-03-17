@@ -19,6 +19,7 @@ type Server struct {
 	logger   *slog.Logger
 	provider scholar.Provider
 	cfg      config.Config
+	version  string
 }
 
 type keywordSearchInput struct {
@@ -41,8 +42,10 @@ type authorInfoInput struct {
 
 func New(cfg config.Config, logger *slog.Logger, version string) *Server {
 	impl := &mcp.Implementation{
-		Name:    "google-scholar-mcp",
-		Version: version,
+		Name:       "google-scholar-mcp",
+		Title:      "Google Scholar MCP",
+		Version:    version,
+		WebsiteURL: "https://github.com/bingshuoguo/google-scholar-mcp",
 	}
 	server := mcp.NewServer(impl, nil)
 	client := scholar.NewClient(cfg, logger)
@@ -53,8 +56,11 @@ func New(cfg config.Config, logger *slog.Logger, version string) *Server {
 		logger:   logger,
 		provider: provider,
 		cfg:      cfg,
+		version:  version,
 	}
 	s.registerTools()
+	s.registerResources()
+	s.registerPrompts()
 	return s
 }
 

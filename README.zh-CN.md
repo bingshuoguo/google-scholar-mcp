@@ -8,10 +8,13 @@
 
 - 基于官方 MCP Go SDK 实现
 - 支持本地 `stdio` 传输，适配桌面端和 CLI MCP 客户端
+- 提供 MCP `tools`、`resources` 和 `prompts`
+- 提供 `stdio`、`version`、`help` CLI 命令
 - 提供结构化的 Google Scholar 搜索结果
 - 提供尽力而为的作者主页信息查询
 - 提供基于 fixture 的解析器测试
 - 提供本地 smoke test 和 MCP Inspector 校验脚本
+- 提供 GitHub Actions CI 和 Docker 打包
 
 ## 可用工具
 
@@ -20,6 +23,23 @@
 | `search_google_scholar_key_words` | 按关键词搜索 Google Scholar，并返回结构化论文元数据。 |
 | `search_google_scholar_advanced` | 按关键词、作者、年份等条件搜索 Google Scholar。 |
 | `get_author_info` | 根据作者姓名查找 Google Scholar 作者主页，并返回结构化作者信息。 |
+
+## 可用资源
+
+| 资源名 | URI | 用途 |
+| --- | --- | --- |
+| `server_overview` | `scholar://server/overview` | 查看服务概览和已启用能力。 |
+| `tool_catalog` | `scholar://server/tools` | 查看工具名、参数和返回形状。 |
+| `runtime_config` | `scholar://server/config` | 查看当前运行时配置。 |
+| `limitations` | `scholar://server/limitations` | 查看使用边界和限制。 |
+| `search_guide` | `scholar://search-guide/{topic}` | 查看特定主题的搜索建议。 |
+
+## 可用 Prompt
+
+| Prompt | 用途 |
+| --- | --- |
+| `scholar_literature_scan` | 引导模型完成关键词导向的文献扫描。 |
+| `scholar_author_brief` | 引导模型完成作者导向的研究简介。 |
 
 ## 可获取的数据
 
@@ -53,6 +73,8 @@
 
 ```bash
 go install github.com/bingshuoguo/google-scholar-mcp/cmd/google-scholar-mcp@latest
+google-scholar-mcp --version
+google-scholar-mcp help
 ```
 
 或者从源码构建：
@@ -75,12 +97,32 @@ go build -o ./.bin/google-scholar-mcp ./cmd/google-scholar-mcp
 go run ./cmd/google-scholar-mcp
 ```
 
+也支持显式的 `stdio` 子命令：
+
+```bash
+google-scholar-mcp stdio
+```
+
 ## 客户端接入
 
 - [Cursor](docs/clients/cursor.md)
 - [Codex](docs/clients/codex.md)
 - [Claude](docs/clients/claude.md)
 - [Gemini CLI](docs/clients/gemini.md)
+
+## 可选 Docker 构建
+
+构建本地镜像：
+
+```bash
+docker build -t google-scholar-mcp .
+```
+
+通过容器在 `stdio` 上运行：
+
+```bash
+docker run --rm -i google-scholar-mcp
+```
 
 ## 本地验证
 
@@ -132,12 +174,14 @@ LOG_LEVEL=debug SCHOLAR_MAX_RESULTS=5 ./.bin/google-scholar-mcp
 
 - `cmd/google-scholar-mcp`：程序入口
 - `internal/config`：配置和日志初始化
-- `internal/mcpserver`：MCP Server 组装和工具注册
+- `internal/mcpserver`：MCP Server 组装、工具注册、资源和 prompt
 - `internal/model`：共享领域模型
 - `internal/scholar`：Google Scholar provider、HTTP client、解析器和测试
 - `testdata`：解析器测试使用的 HTML fixture
 - `scripts/verify_stdio.sh`：构建、smoke test 和 Inspector 启动脚本
 - `scripts/smoke_stdio`：基于 Go 的本地 smoke test 工具
+- `.github/workflows/ci.yml`：测试和 stdio smoke 校验 CI
+- `Dockerfile`：容器打包入口
 
 ### 说明
 
@@ -151,6 +195,10 @@ LOG_LEVEL=debug SCHOLAR_MAX_RESULTS=5 ./.bin/google-scholar-mcp
 - [Codex 接入说明](docs/clients/codex.md)
 - [Claude 接入说明](docs/clients/claude.md)
 - [Gemini CLI 接入说明](docs/clients/gemini.md)
+- [架构说明](docs/architecture.md)
+- [工具说明](docs/tools.md)
+- [资源说明](docs/resources.md)
+- [Prompt 说明](docs/prompts.md)
 
 ## 限制说明
 
