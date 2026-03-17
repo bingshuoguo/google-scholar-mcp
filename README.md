@@ -79,6 +79,12 @@ google-scholar-mcp --version
 google-scholar-mcp help
 ```
 
+Other installation options:
+
+- [Release archives](docs/install.md)
+- [Homebrew](docs/install.md)
+- [Scoop](docs/install.md)
+
 Or build from source:
 
 ```bash
@@ -111,6 +117,7 @@ google-scholar-mcp stdio
 - [Codex](docs/clients/codex.md)
 - [Claude](docs/clients/claude.md)
 - [Gemini CLI](docs/clients/gemini.md)
+- [Installation](docs/install.md)
 
 ## Optional Docker Build
 
@@ -198,9 +205,11 @@ LOG_LEVEL=debug SCHOLAR_MAX_RESULTS=5 ./.bin/google-scholar-mcp
 - [Claude integration](docs/clients/claude.md)
 - [Gemini CLI integration](docs/clients/gemini.md)
 - [Architecture](docs/architecture.md)
+- [Installation](docs/install.md)
 - [Tools](docs/tools.md)
 - [Resources](docs/resources.md)
 - [Prompts](docs/prompts.md)
+- [Changelog](CHANGELOG.md)
 
 ## Limitations
 

@@ -77,6 +77,10 @@ google-scholar-mcp --version
 google-scholar-mcp help
 ```
 
+其他安装方式：
+
+- [Release 压缩包 / Homebrew / Scoop 说明](docs/install.md)
+
 或者从源码构建：
 
 ```bash
@@ -109,6 +113,7 @@ google-scholar-mcp stdio
 - [Codex](docs/clients/codex.md)
 - [Claude](docs/clients/claude.md)
 - [Gemini CLI](docs/clients/gemini.md)
+- [安装说明](docs/install.md)
 
 ## 可选 Docker 构建
 
@@ -196,9 +201,11 @@ LOG_LEVEL=debug SCHOLAR_MAX_RESULTS=5 ./.bin/google-scholar-mcp
 - [Claude 接入说明](docs/clients/claude.md)
 - [Gemini CLI 接入说明](docs/clients/gemini.md)
 - [架构说明](docs/architecture.md)
+- [安装说明](docs/install.md)
 - [工具说明](docs/tools.md)
 - [资源说明](docs/resources.md)
 - [Prompt 说明](docs/prompts.md)
+- [更新日志](CHANGELOG.md)
 
 ## 限制说明
 

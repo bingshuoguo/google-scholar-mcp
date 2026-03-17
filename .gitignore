@@ -2,3 +2,4 @@
 /google-scholar-mcp
 __pycache__/
 *.pyc
+/dist/

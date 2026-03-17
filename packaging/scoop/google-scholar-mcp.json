@@ -1,0 +1,32 @@
+{
+  "version": "0.1.1",
+  "description": "Google Scholar MCP server written in Go",
+  "homepage": "https://github.com/bingshuoguo/google-scholar-mcp",
+  "notes": [
+    "Use this binary as the MCP stdio command in your client configuration."
+  ],
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/bingshuoguo/google-scholar-mcp/releases/download/v0.1.1/google-scholar-mcp_0.1.1_windows_amd64.zip",
+      "hash": "8521119401f4477ae2aa5416a828742fd4bf0a39e5c3b2a9929eede98304e5b4"
+    },
+    "arm64": {
+      "url": "https://github.com/bingshuoguo/google-scholar-mcp/releases/download/v0.1.1/google-scholar-mcp_0.1.1_windows_arm64.zip",
+      "hash": "680f5c08f8decebd30574712060803665acbe1da2f892c5054eb19db8f2f576f"
+    }
+  },
+  "bin": "google-scholar-mcp.exe",
+  "checkver": {
+    "github": "https://github.com/bingshuoguo/google-scholar-mcp"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/bingshuoguo/google-scholar-mcp/releases/download/v$version/google-scholar-mcp_$version_windows_amd64.zip"
+      },
+      "arm64": {
+        "url": "https://github.com/bingshuoguo/google-scholar-mcp/releases/download/v$version/google-scholar-mcp_$version_windows_arm64.zip"
+      }
+    }
+  }
+}
