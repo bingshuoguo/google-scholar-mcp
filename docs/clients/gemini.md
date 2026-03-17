@@ -5,16 +5,20 @@ This guide configures `google-scholar-mcp` for Gemini CLI.
 ## Prerequisites
 
 - Gemini CLI installed
-- Go `1.25+`
-- This repository available locally
+- `google-scholar-mcp` installed locally
 
-Build the server binary:
+## Install the Binary
+
+Recommended:
 
 ```bash
-go build -o ./.bin/google-scholar-mcp ./cmd/google-scholar-mcp
+go install github.com/bingshuoguo/google-scholar-mcp/cmd/google-scholar-mcp@latest
+google-scholar-mcp --version
 ```
 
-Optional validation:
+Alternative installation paths are documented in [Installation](../install.md).
+
+Optional local validation:
 
 ```bash
 ./scripts/verify_stdio.sh smoke
@@ -32,7 +36,7 @@ Gemini CLI reads user settings from:
 {
   "mcpServers": {
     "google-scholar": {
-      "command": "/absolute/path/to/google-scholar-mcp/.bin/google-scholar-mcp",
+      "command": "/absolute/path/to/google-scholar-mcp",
       "args": [],
       "env": {
         "LOG_LEVEL": "info",
@@ -54,6 +58,7 @@ If the server is not detected, re-open Gemini CLI after updating `settings.json`
 - `settings.json` must remain valid JSON.
 - Use an absolute `command` path if Gemini CLI does not inherit your shell `PATH`.
 - Keep the server on `stdio`; do not wrap it with a command that writes extra output.
+- Confirm installation with `google-scholar-mcp --version` before debugging Gemini config.
 
 ## Reference
 

@@ -5,16 +5,20 @@ This guide configures `google-scholar-mcp` for Claude clients.
 ## Prerequisites
 
 - Claude Code or Claude Desktop installed
-- Go `1.25+`
-- This repository available locally
+- `google-scholar-mcp` installed locally
 
-Build the server binary:
+## Install the Binary
+
+Recommended:
 
 ```bash
-go build -o ./.bin/google-scholar-mcp ./cmd/google-scholar-mcp
+go install github.com/bingshuoguo/google-scholar-mcp/cmd/google-scholar-mcp@latest
+google-scholar-mcp --version
 ```
 
-Optional validation:
+Alternative installation paths are documented in [Installation](../install.md).
+
+Optional local validation:
 
 ```bash
 ./scripts/verify_stdio.sh smoke
@@ -27,8 +31,10 @@ Anthropic documents the `claude mcp add` workflow for local stdio servers.
 Example:
 
 ```bash
-claude mcp add google-scholar /absolute/path/to/google-scholar-mcp/.bin/google-scholar-mcp
+claude mcp add google-scholar google-scholar-mcp
 ```
+
+If Claude Code does not resolve the binary from `PATH`, use an absolute path instead.
 
 ## Claude Desktop Manual Configuration
 
@@ -38,7 +44,7 @@ If you are using Claude Desktop, edit `claude_desktop_config.json` and add:
 {
   "mcpServers": {
     "google-scholar": {
-      "command": "/absolute/path/to/google-scholar-mcp/.bin/google-scholar-mcp",
+      "command": "/absolute/path/to/google-scholar-mcp",
       "args": [],
       "env": {
         "LOG_LEVEL": "info",
@@ -65,6 +71,7 @@ Common config locations:
 - Use the absolute path to the binary if the client cannot resolve it.
 - Do not add wrappers that print to `stdout`.
 - If a config change is ignored, restart Claude completely.
+- Confirm installation with `google-scholar-mcp --version` before debugging Claude config.
 
 ## Reference
 

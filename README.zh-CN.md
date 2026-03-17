@@ -109,6 +109,7 @@ google-scholar-mcp stdio
 
 ## 客户端接入
 
+- [文档索引](docs/README.md)
 - [Cursor](docs/clients/cursor.md)
 - [Codex](docs/clients/codex.md)
 - [Claude](docs/clients/claude.md)
@@ -196,6 +197,7 @@ LOG_LEVEL=debug SCHOLAR_MAX_RESULTS=5 ./.bin/google-scholar-mcp
 
 ## 文档
 
+- [文档索引](docs/README.md)
 - [Cursor 接入说明](docs/clients/cursor.md)
 - [Codex 接入说明](docs/clients/codex.md)
 - [Claude 接入说明](docs/clients/claude.md)

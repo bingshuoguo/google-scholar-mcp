@@ -113,6 +113,7 @@ google-scholar-mcp stdio
 
 ## Client Integration
 
+- [Documentation Index](docs/README.md)
 - [Cursor](docs/clients/cursor.md)
 - [Codex](docs/clients/codex.md)
 - [Claude](docs/clients/claude.md)
@@ -200,6 +201,7 @@ LOG_LEVEL=debug SCHOLAR_MAX_RESULTS=5 ./.bin/google-scholar-mcp
 
 ## Docs
 
+- [Documentation Index](docs/README.md)
 - [Cursor integration](docs/clients/cursor.md)
 - [Codex integration](docs/clients/codex.md)
 - [Claude integration](docs/clients/claude.md)

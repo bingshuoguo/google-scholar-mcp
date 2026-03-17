@@ -5,16 +5,20 @@ This guide configures `google-scholar-mcp` for OpenAI Codex.
 ## Prerequisites
 
 - Codex installed
-- Go `1.25+`
-- This repository available locally
+- `google-scholar-mcp` installed locally
 
-Build the server binary:
+## Install the Binary
+
+Recommended:
 
 ```bash
-go build -o ./.bin/google-scholar-mcp ./cmd/google-scholar-mcp
+go install github.com/bingshuoguo/google-scholar-mcp/cmd/google-scholar-mcp@latest
+google-scholar-mcp --version
 ```
 
-Optional validation:
+Alternative installation paths are documented in [Installation](../install.md).
+
+Optional local validation:
 
 ```bash
 ./scripts/verify_stdio.sh smoke
@@ -32,7 +36,16 @@ Config file:
 
 ```toml
 [mcp_servers.google-scholar]
-command = "/absolute/path/to/google-scholar-mcp/.bin/google-scholar-mcp"
+command = "google-scholar-mcp"
+args = []
+env = { LOG_LEVEL = "info", SCHOLAR_MAX_RESULTS = "5" }
+```
+
+If Codex does not resolve the binary from `PATH`, switch `command` to an absolute path such as:
+
+```toml
+[mcp_servers.google-scholar]
+command = "/Users/your-name/go/bin/google-scholar-mcp"
 args = []
 env = { LOG_LEVEL = "info", SCHOLAR_MAX_RESULTS = "5" }
 ```
@@ -51,6 +64,7 @@ Then start Codex and ask it to search Scholar.
 - The key is `mcp_servers`, not `mcp-servers`.
 - TOML syntax errors in `~/.codex/config.toml` can break all Codex MCP entries.
 - If Codex cannot find the binary, switch `command` to an absolute path.
+- Confirm installation with `google-scholar-mcp --version` before debugging MCP config.
 
 ## Reference
 

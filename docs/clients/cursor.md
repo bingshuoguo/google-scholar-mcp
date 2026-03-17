@@ -5,16 +5,20 @@ This guide configures `google-scholar-mcp` as a local MCP server in Cursor.
 ## Prerequisites
 
 - Cursor installed
-- Go `1.25+`
-- This repository available locally
+- `google-scholar-mcp` installed locally
 
-Build the server binary:
+## Install the Binary
+
+Recommended:
 
 ```bash
-go build -o ./.bin/google-scholar-mcp ./cmd/google-scholar-mcp
+go install github.com/bingshuoguo/google-scholar-mcp/cmd/google-scholar-mcp@latest
+google-scholar-mcp --version
 ```
 
-Optional validation:
+Alternative installation paths are documented in [Installation](../install.md).
+
+Optional local validation:
 
 ```bash
 ./scripts/verify_stdio.sh smoke
@@ -33,7 +37,7 @@ Cursor supports MCP config in either of these locations:
 {
   "mcpServers": {
     "google-scholar": {
-      "command": "/absolute/path/to/google-scholar-mcp/.bin/google-scholar-mcp",
+      "command": "google-scholar-mcp",
       "args": [],
       "env": {
         "LOG_LEVEL": "info",
@@ -45,6 +49,11 @@ Cursor supports MCP config in either of these locations:
 ```
 
 Use the absolute binary path if Cursor does not inherit your shell `PATH`.
+
+Examples:
+
+- Go default install path: `/Users/your-name/go/bin/google-scholar-mcp`
+- Homebrew on Apple Silicon: `/opt/homebrew/bin/google-scholar-mcp`
 
 ## Verify In Cursor
 
@@ -58,6 +67,7 @@ Use the absolute binary path if Cursor does not inherit your shell `PATH`.
 - JSON syntax errors will prevent Cursor from loading any MCP servers in that file.
 - If the server does not start, replace `command` with the absolute binary path.
 - Keep logs on `stderr`. Do not wrap the binary with a script that prints to `stdout`.
+- Confirm installation with `google-scholar-mcp --version` before debugging Cursor config.
 
 ## Reference
 
