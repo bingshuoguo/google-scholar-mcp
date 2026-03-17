@@ -55,6 +55,7 @@ Install the binary from GitHub:
 
 ```bash
 go install github.com/bingshuoguo/google-scholar-mcp/cmd/google-scholar-mcp@latest
+google-scholar-mcp --version
 ```
 
 Or build from source:
